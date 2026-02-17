@@ -5,21 +5,43 @@ object Part2ConditionalLogic {
     // Create a function that takes an integer as a parameter and returns "Positive", "Negative", or "Zero".
     fun checkNumber(number: Int): String {
         // Your code here
-        return ""
+        if (number > 0) {
+            return "Positive"
+        } else if (number == 0) {
+            return "Zero"
+        } else {
+            return "Negative"
+        }
     }
 
     // ---------------------- EXERCISE 2
     // Create a function that takes a string and prints each character on a new line.
     fun printChars(input: String) {
         // Your code here
+        val stringToCharArray = input.toCharArray()
+
+        stringToCharArray.forEach { char ->
+            println(char)
+        }
     }
+
 
     // ---------------------- EXERCISE 3
     // Create a function that takes an integer and returns the sum of its digits.
     // For example if input is 45 then output should be 9 (4+5)
     fun sumDigits(number: Int): Int {
         // Your code here
-        return 0
+        val digits: List<Int> = number.toString().map { it.digitToInt() } // How can i split a integer into digits in kotlin. GPT-5.2
+
+        println(digits)
+
+        var sumOfDigits = 0
+        digits.forEach { digits ->
+            sumOfDigits += digits
+        }
+
+
+        return sumOfDigits
     }
 
     // ---------------------- EXERCISE 4
@@ -27,21 +49,35 @@ object Part2ConditionalLogic {
     // For example if input is (1,2,3,4,5) then output should be (1,3,5)
     fun filterOddNumbers(numbers: List<Int>): List<Int> {
         // Your code here
-        return listOf()
-    }
+
+        val oddNumbers = numbers.filter { it % 2 != 0 }
+            return oddNumbers
+        }
 
     // ---------------------- EXERCISE 5
     // Create a function that takes a list of strings and returns a new list with all strings in lowercase.
     fun transformToLowercase(strings: List<String>): List<String> {
         // Your code here
-        return listOf()
+        val lowercaseStrings: MutableList<String> = mutableListOf()
+
+        strings.forEach { string ->
+            lowercaseStrings.add(string.lowercase())
+        }
+
+        return lowercaseStrings
     }
+
+
 
     // ---------------------- EXERCISE 6
     // Create a function that prints numbers from 1 to 10 with println(), but skips multiples of 3 using a loop.
     // Expected output: "1", "2", "4", "5", "7", "8", "10"
     fun printNumbersSkipMultiplesOf3() {
-        // Your code here
+        val listFrom1to10: List<Int> = listOf(1,2,3,4,5,6,7,8,9,10)
+
+        val listWithOutMultiplesOf3 = listFrom1to10.filter { it % 3 != 0 }
+
+        println(listWithOutMultiplesOf3)
     }
 
     // ---------------------- EXERCISE 7
@@ -50,15 +86,21 @@ object Part2ConditionalLogic {
     // White spaces should be ignored.
     fun isPalindrome(input: String): Boolean {
         // Your code here
-        return false
+
+        if (input == input.reversed()) {
+            return true
+        } else {
+            return false
+        }
     }
 
     // ---------------------- EXERCISE 8
     // Modify the function to have default values for both width and height and to return the area of the rectangle.
     // Example of a function with a default value "world": fun greet(name: String = "world") {}
-    fun calculateArea(width: Int, height: Int): Int {
+    fun calculateArea(width: Int = 10, height: Int = 10): Int {
         // Your code here
-        return 0
+        val areaOfRectangle = width * height
+        return areaOfRectangle
     }
 
     // ---------------------- EXERCISE 9
@@ -67,8 +109,19 @@ object Part2ConditionalLogic {
     // Acceptable days: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
     // If the day does not exist, return "Invalid day".
     fun dayType(day: String): String {
-        return ""
+
+        val weekdays: List<String> = listOf("monday", "tuesday", "wednesday", "thursday", "friday")
+        val weekendDays: List<String> = listOf("saturday", "sunday")
+
+        if (weekdays.contains(day.lowercase())) {
+            return day
+        } else if (weekendDays.contains(day.lowercase())) {
+            return day
+        } else {
+            return "Invalid day"
+        }
     }
+
 
     // ---------------------- EXERCISE 10
     // Create a function that takes an integer year and returns true if it is a leap year, false otherwise.
@@ -77,7 +130,11 @@ object Part2ConditionalLogic {
     //      If dividing the year by 100 result in a whole number, it must also result in a whole number when dividing by 400
     // Examples: 2024 is a leap year, and 2023 is not
     fun isLeapYear(year: Int): Boolean {
-        return false
+
+        val isLeapYear: Boolean = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
+
+        return isLeapYear
+
     }
 
     // ---------------------- EXERCISE 11
@@ -88,6 +145,8 @@ object Part2ConditionalLogic {
     //      val result = applyLambda(numbers) { it * 2 }
     //      Should return: [2, 4, 6, 8, 10]
     fun applyLambda(numbers: List<Int>, lambda: (Int) -> Int): List<Int> {
-        return listOf()
+
+        return numbers.map(lambda)  // https://medium.com/@guruprasadhegde4/kotlin-lambda-expressions-bb9d4e15b6fc 2. Using it in Higher-Order Functions
+
     }
 }
