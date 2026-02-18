@@ -16,10 +16,14 @@ object Part3ClassesAndObjects {
     // ---------------------- EXERCISE 1
     // Create a Book class with 3 attributes: title, author, and price (Double)
     // Add a method to display book details called displayDetails that prints title, author and price
-    class Book(val title:String,
-               val author:String,
-               var price:Double
+    class Book(private val title:String,
+               private val author:String,
+               private var price:Double
     ) {
+        fun updatePrice(newPrice: Double){
+            price = newPrice
+        }
+
         fun displayDetails(){
             println("the title is: $title, the author: $author and the price: $price")
         }
@@ -32,10 +36,10 @@ object Part3ClassesAndObjects {
     // Add methods to add a grade (addGrade), calculate the average grade (averageGrade as Double),
     // and display student details (displayDetails) which must print name, age and average grade
 
-    class Student(val name:String,
-                  var age:Int
+    class Student(private val name:String,
+                  private var age:Int
     ) {
-        val grades: MutableList<Int> = mutableListOf()
+        private val grades: MutableList<Int> = mutableListOf()
 
         fun addGrade (grade: Int){
             grades.add(grade)
@@ -50,6 +54,9 @@ object Part3ClassesAndObjects {
 
         }
 
+        fun updateAge(newAge: Int){
+            age = newAge
+        }
 
 
         fun displayDetails(){
@@ -69,8 +76,13 @@ object Part3ClassesAndObjects {
 
     class BankAccount(private val accountNumber: Int,
                       private val accountHolder: String,
-                      var balance: Double,
-                      ) {
+                      initialBalance: Double
+
+    ) {
+
+        private var balance: Double = initialBalance.coerceAtLeast(0.0)
+
+
 
         fun deposit(depositedMoney: Double){
             balance += depositedMoney
