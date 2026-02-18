@@ -73,6 +73,7 @@ class Part1Tests {
     @Test
     fun `exercise 03 test variable printing`() {
         try {
+            printVariables()
             println("Checking if 'temperature' and 'greeting' is printed correctly")
             // Capture the output
             val outputStream = ByteArrayOutputStream()

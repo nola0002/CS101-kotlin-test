@@ -16,7 +16,15 @@ object Part3ClassesAndObjects {
     // ---------------------- EXERCISE 1
     // Create a Book class with 3 attributes: title, author, and price (Double)
     // Add a method to display book details called displayDetails that prints title, author and price
+    class Book(val title:String,
+               val author:String,
+               var price:Double
+    ) {
+        fun displayDetails(){
+            println("the title is: $title, the author: $author and the price: $price")
+        }
 
+}
 
     // ---------------------- EXERCISE 2
     // Create a Student class with the attributes name, age, and grades (a list of integers)
@@ -24,12 +32,67 @@ object Part3ClassesAndObjects {
     // Add methods to add a grade (addGrade), calculate the average grade (averageGrade as Double),
     // and display student details (displayDetails) which must print name, age and average grade
 
+    class Student(val name:String,
+                  var age:Int
+    ) {
+        val grades: MutableList<Int> = mutableListOf()
+
+        fun addGrade (grade: Int){
+            grades.add(grade)
+            println("$grade has been added to your grades")
+            println(grades)
+        }
+
+        fun averageGrade() {
+            val averageGrade = grades.average()
+            println("Your average grade is:")
+            println(averageGrade)
+
+        }
+
+
+
+        fun displayDetails(){
+            val averageGrade: Double = grades.average()
+            println("Name: $name")
+            println("Age: $age")
+            println("Average Grade: $averageGrade")
+        }
+    }
+
+
 
     // ---------------------- EXERCISE 3
     // Create a BankAccount class with the attributes accountNumber, balance (Double), and accountHolder
     // Add methods to deposit, withdraw, and display account details (displayDetails) which must include accountNumber, balance, and accountHolder
     // Ensure that the balance cannot be negative
 
+    class BankAccount(private val accountNumber: Int,
+                      private val accountHolder: String,
+                      var balance: Double,
+                      ) {
+
+        fun deposit(depositedMoney: Double){
+            balance += depositedMoney
+            println("")
+        }
+
+        fun withdraw(withdrawnMoney: Double){
+            if (balance >= withdrawnMoney) {
+                balance -= withdrawnMoney
+                println("Transaction was sucessfull")
+            } else {
+                println("Insufficient funds")
+            }
+        }
+
+        fun displayDetails(){
+            println("Account holder: $accountHolder")
+            println("Bank account number: $accountNumber")
+            println("Your balance is: $balance")
+        }
+
+    }
 
     // ---------------------- EXERCISE 4
     // Create a Product class that includes a name (String) and price (Double)
