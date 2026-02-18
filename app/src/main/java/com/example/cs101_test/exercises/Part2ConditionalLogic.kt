@@ -114,9 +114,9 @@ object Part2ConditionalLogic {
         val weekendDays: List<String> = listOf("saturday", "sunday")
 
         if (weekdays.contains(day.lowercase())) {
-            return day
+            return "$day is a weekday"
         } else if (weekendDays.contains(day.lowercase())) {
-            return day
+            return "$day is Weekend"
         } else {
             return "Invalid day"
         }
